@@ -147,7 +147,116 @@ print('That is {0} {1} bird!'.format(1, 'dead')) # Format method in 2.6, 2.7, 3.
 
 
 
+# String Methods
 
+S = 'spammy'
+S = S[:3] + 'xx' + S[5:] # Slice sections from S
+print(S)
+
+
+S = 'spammy'
+S = S.replace('mm', 'xx') # Replace all mm with xx in S
+print(S)
+
+
+print('aa$bb$cc$dd'.replace('$', 'SPAM'))
+
+
+S = 'xxxSPAMxxxxSPAMxxxx'
+where = S.find('SPAM') # Search for position
+print(where) # Occurs at offset 4
+
+S = S[:where] + "EGGS" + S[(where + 4):]
+print(S)
+
+
+S = 'xxxxSPAMxxxxSPAMxxxx'
+print(S.replace('SPAM', 'EGGS')) # Replace all
+
+print(S.replace('SPAM', 'EGGS', 1)) # Replace one
+
+
+S = 'spammy'
+L = list(S)
+print(L)
+
+L[3] = 'x' # Works for lists not strings
+L[4] = 'x'
+
+print(L)
+
+
+S = ''.join(L)
+print(S)
+
+
+print('SPAM'.join(['eggs', 'sausage', 'ham', 'toast']))
+
+
+line = 'aaa bbb ccc'
+col1 = line[0:3]
+col3 = line[8:]
+print(col1)
+print(col3)
+
+
+line = 'aaa bbb  ccc'
+cols = line.split()
+print(cols)
+
+
+line = 'bob,hacker,40'
+print(line.split(','))
+
+
+line = "i'mSPAMaSPAMlumberjack"
+print(line.split('SPAM'))
+
+
+line = 'The knights who say Ni!\n'
+print(line.rstrip())
+print(line.upper())
+print(line.isalpha())
+print(line.endswith('Ni!\n'))
+print(line.startswith('The'))
+
+
+print(line)
+print(line.find('Ni') != -1) # Search via call or expression
+print('Ni' in line)
+sub = 'Ni!\n'
+print(line.endswith(sub)) # End test via method call or slice
+print(line[-len(sub):] == sub)
+
+
+print('That is %d %s bird!' % (1, 'dead')) # Format expression
+
+
+exclamation = 'Ni!'
+print('The knights who say %s' % exclamation) # String substitution
+
+print('%d %s %g you' % (1, 'spam', 4.0)) # Type-specific substitutions 
+
+print('%s -- %s -- %s' % (42, 3.14159, [1,2,3])) # All types match a %s target
+
+
+x = 1234
+res = 'integers: ...%d...%-6d...%06d' % (x,x,x)
+print(res)
+
+
+x = 1.23456789
+print(x) # Shows more digits before 2.7 and 3.1
+
+print('%e | %f | %g' % (x,x,x))
+print('%E' % x)
+
+
+print('%-6.2f | %05.2f | %+06.1f' % (x,x,x))
+
+print('%s' % x, str(x))
+
+print('%f, %.2f, %.*f' % (1/3.0, 1/3.0, 4, 1/3.0))
 
 
 
