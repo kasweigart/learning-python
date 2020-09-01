@@ -459,6 +459,117 @@ print('{:,.2f}'.format(296999.2567))
 # Why the Format Method?
 
 
+print('{0:b}'.format((2 ** 16) - 1)) # Expression (only) binary format code
+
+# print('%b' % ((2 ** 16) - 1)) # ValueError: unsupported format character 'b'
+
+print(bin((2 ** 16) - 1)) # But other more general options work too
+
+print('%s' % bin((2 ** 16) - 1)) # Usable with both method and % expression
+
+print('{}'.format(bin((2 ** 16) - 1))) # Wtih 2.7/3.1+ relative numbering
+
+print('%s'% bin((2 ** 16) - 1)[2:]) # Slice off 0b to get exactly equivalent
+
+
+print('{:,d}'.format(999999999999)) # New str.format method feature in 3.1/2/7
+
+# print('%s' % commas(999999999999)) # But % is same with 8-line simple function
+
+
+print('{name} {job} {name}'.format(name='Bob', job='dev'))
+
+print('%(name)s %(job)s %(name)s' % dict(name='Bob', job='dev'))
+
+
+D = dict(name='Bob', job='dev')
+
+print('{0[name]} {0[job]} {0[name]}'.format(D)) # Method, key references
+
+print('{name} {job} {name}'.format(**D)) # Method, dict-to-args
+
+print('%(name)s %(job)s %(name)s' % D) # Expression, key references
+
+
+print('The {0} side {1} {2}'.format('bright', 'of', 'life')) # Python 3.X, 2.6+
+
+print('The {} side {} {}'.format('bright', 'of', 'life')) # Python 3.1+, 2.7+
+
+print('The %s side %s %s' % ('bright', 'of', 'life')) # All Pythons
+
+
+print('{0:f}, {1:.2f}, {2:05.2f}'.format(3.14159, 3.14159, 3.14159))
+
+print('{:f}, {:.2f}, {:06.2f}'.format(3.14159, 3.14159, 3.14159))
+
+print('%f, %.2f, %06.2f' % (3.14159, 3.14159, 3.14159))
+
+
+print('%.2f' % 1.2345) # Single value
+
+print('%.2f %s' % (1.2345, 99)) # Multiple values
+
+
+print('%s' % 1.23) # Single value, by itself
+
+print('%s' % (1.23,)) # Single value, in a tuple
+
+print('%s' % ((1.23,),)) # Single value that is a tuple
+
+
+print('{0:.2f}'.format(1.2345)) # Single value
+
+print('{0:.2f} {1}'.format(1.2345, 99)) # Multiple values
+
+print('{0}'.format(1.23)) # Single value, by itself
+
+print('{0}'.format((1.23),)) # Single value that is a tuple
+
+
+def myformat(fmt, args): return fmt % args # See Part IV
+
+print(myformat('%s %s', (88, 99))) # Call your function object
+
+print(str.format('{} {}', 88, 99)) # Versus calling the built-in
+
+# otherfunction(myformat) # Your function is an object too
+
+
+print('%(num)i = %(title)s' % dict(num=7, title='Strings'))
+
+print('{num:d} = {title:s}'.format(num=7, title='Strings'))
+
+print('{num} = {title}'.format(**dict(num=7, title='Strings')))
+
+
+import string
+
+t = string.Template('$num = $title')
+
+print(t.substitute({'num': 7, 'title': 'Strings'}))
+
+print(t.substitute(num=7, title='Strings'))
+
+print(t.substitute(dict(num=7, title='Strings')))
+
+
+S = 's,pa,m'
+
+print(S[2:4])
+
+print(S.split(',')[1])
+
+
+string = 'a\nb\x1f\000d'
+
+print(len(string))
+
+
+
+
+
+
+
 
 
 
