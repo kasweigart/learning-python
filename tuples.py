@@ -12,3 +12,7 @@ print(T.count(4)) # 4 appears once
 
 T = (2,) + T[1:] # Make a new tuple for a new value
 print(T)
+
+T = 'spam', 3.0, [11,22,33]
+print(T[1])
+print(T[2][1])

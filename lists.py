@@ -49,3 +49,4 @@ print({ord(x) for x in 'spaam'}) # Sets remove duplicates
 print({x: ord(x) for x in 'spaam'}) # Dictionary keys are unique
 
 print((ord(x) for x in 'spaam')) # Generator of values
+
