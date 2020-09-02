@@ -128,3 +128,96 @@ L.sort(key=str.lower, reverse=True) # Change sort order
 
 print(L)
 
+
+L = ['abc', 'ABD', 'aBe']
+
+print(sorted(L, key=str.lower, reverse=True)) # Sorting built-in
+
+
+L = ['abc', 'ABD', 'aBe']
+
+print(sorted([x.lower() for x in L], reverse=True)) # Pretransform items: differs!
+
+
+L = [1, 2]
+
+L.extend([3, 4, 5]) # Add many items at end (like in-place +)
+
+print(L)
+
+L.pop() # Delete and return last item (by default: -1)
+
+print(L)
+
+L.reverse() # In-place reversal method
+
+print(L)
+
+print(list(reversed(L))) # Reversal built-in with a result (iterator)
+
+
+L = ['spam', 'eggs', 'ham']
+
+print(L.index('eggs')) # Index OF an object (search/find)
+
+L.insert(1, 'toast') # Insert at position
+
+print(L)
+
+L.remove('eggs') # Delete by value
+
+print(L)
+
+print(L.pop(1)) # Delete by position
+
+print(L)
+
+print(L.count('spam')) # Number of occurances
+
+
+L = ['spam', 'eggs', 'ham', 'toast']
+
+del L[0] # Delete one item
+
+print(L)
+
+
+del L[1:] # Delete an entire section
+
+print(L) # Same as L[1:] = []
+
+
+L = ['Already', 'got', 'one']
+
+L[1:] = []
+
+print(L)
+
+
+L[0]= []
+
+print(L)
+
+
+
+# Dictionaries
+
+
+D = {'spam': 2, 'ham': 1, 'eggs': 3} # Make a dictionary
+
+print(D['spam']) # Fetch a value by key
+
+print(D) # Order is 'scrambled'
+
+
+
+
+
+
+
+
+
+
+
+
+
