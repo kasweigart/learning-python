@@ -210,6 +210,262 @@ print(D['spam']) # Fetch a value by key
 print(D) # Order is 'scrambled'
 
 
+print(len(D)) # Number of entries in dictionary
+
+print('ham' in D) # Key membership test alternative
+
+print(list(D.keys())) # Create a new list of D's keys
+
+
+print(D)
+
+D['ham'] = ['grill', 'bake', 'fry'] # Change entry (value=list)
+
+print(D)
+
+del D['eggs'] # Delete entry
+
+print(D)
+
+D['brunch'] = 'Bacon' # Add new entry
+
+print(D)
+
+
+D = {'spam': 2, 'ham': 1, 'eggs': 3}
+
+print(list(D.values()))
+
+print(list(D.items()))
+
+
+print(D.get('spam')) # A key that is there
+
+print(D.get('toast')) # A key that is missing
+
+print(D.get('toast', 88))
+
+
+print(D)
+
+D2 = {'toast': 4, 'muffin': 5}
+
+D.update(D2)
+
+print(D)
+
+
+# Pop a dictionary by key
+
+print(D)
+
+print(D.pop('muffin'))
+
+print(D.pop('toast')) # Delete and return from a key
+
+print(D)
+
+
+# Pop a list by position
+
+L = ['aa', 'bb', 'cc', 'dd']
+
+print(L.pop()) # Delete and return from the end
+
+print(L)
+
+print(L.pop(1)) # Delete from a specific position
+
+print(L)
+
+
+table = {'1975': 'Holy Grail', '1979': 'Life of Brian', '1983': 'The Meaning of Life'} # Key: Value
+
+year = '1983'
+
+movie = table[year] # dictionary[Key] => Value
+
+print(movie)
+
+
+for year in table: # Same as: for year in table.keys()
+    print(year + '\t' + table[year])
+
+
+table = {'Holy Grail': '1975', 'Life of Brain': '1979', 'The Meaning of Life': '1983'} # Key=>Value (title=>year)
+
+print(table['Holy Grail'])
+
+print(list(table.items()))
+
+print([title for (title, year) in table.items() if year == '1975'])
+
+
+K = 'Holy Grail'
+
+print(table[K]) # Key=>Value (normal usage)
+
+
+V = '1975'
+
+print([key for (key, value) in table.items() if value == V]) # Value=>Key
+
+print([key for key in table.keys() if table[key] == V]) # Ditto
+
+
+L = []
+
+# L[99] = 'spam' # IndexError: list assignment index out of range
+
+
+D = {}
+
+D[99] = 'spam'
+
+print(D[99])
+
+print(D)
+
+
+table = {1975: 'Holy Grail', 1979: 'Life of Brian', 1983: 'The Meaning of Life'} # Keys are integers, not strings
+
+print(table[1975])
+
+print(list(table.items()))
+
+
+Matrix = {}
+
+Matrix[(2, 3, 4)] = 88
+
+Matrix[(7, 8, 9)] = 99
+
+X = 2; Y = 3; Z = 4 # ; seperates statements: see Chapter 10
+
+print(Matrix[X, Y, Z])
+
+print(Matrix)
+
+# print(Matrix[(2, 3, 6)]) # Not physically stored
+
+
+if (2, 3, 6) in Matrix: # Check for key before fetch
+    print(Matrix[(2, 3, 6)]) # See Chapters 10 and 12 for if/else
+else:
+    print(0)
+
+
+try:
+    print(Matrix[(2, 3, 6)]) # Try to index
+except KeyError: # Catch and recover
+    print(0) # See Chapters 10 and 34 for try/except
+
+
+print(Matrix.get((2, 3, 4), 0)) # Exists: fetch and return
+
+print(Matrix.get((2, 3, 6), 0)) # Doesn't exist: use default arg
+
+
+rec = {}
+
+rec['name'] = 'Bob'
+
+rec['age'] = 40.5
+
+rec['job'] = 'developer/manager'
+
+print(rec['name'])
+
+
+rec = {'name': 'Bob', 'jobs': ['developer', 'manager'], 'web': 'www.bobs.org/~Bob', 'home': {'state': 'Overworked', 'zip': 12345}}
+
+print(rec['name'])
+
+print(rec['jobs'])
+
+print(rec['jobs'][1])
+
+print(rec['home']['zip'])
+
+
+db = []
+
+db.append(rec) # A list 'database'
+
+print(db[0]['jobs'])
+
+
+db = {}
+
+db['bob'] = rec # A dictionary 'database'
+
+print(db['bob']['jobs'])
+
+
+{'name': 'Bob', 'age': 40} # Traditional literal expression
+
+D = {} # Assign by keys dynamically
+
+D['name'] = 'Bob'
+
+D['age'] = 40
+
+dict(name='Bob', age=40) # dict keyword argument form
+
+dict([('name', 'Bob'), ('age', 40)]) # dict key/value tuples form
+
+
+# dict(zip(keyslist, valueslist)) # Zipped key/value tuples form (ahead)
+
+
+print(dict.fromkeys(['a', 'b'], 0))
+
+
+L = ['Bob', 40.5, ['dev', 'mgr']] # List-based 'record'
+
+print(L[0])
+
+print(L[1]) # Positions/numbers for fields
+
+print(L[2][1])
+
+
+D = {'name': 'Bob', 'age': 40.5, 'jobs': ['dev', 'mgr']}
+
+print(D['name'])
+
+print(D['age']) # Dictionary-based 'record'
+
+print(D['jobs'][1]) # Names mean more than numbers
+
+
+D = dict(name='Bob', age=40.5, jobs=['dev', 'mgr'])
+
+print(D['name'])
+
+D['jobs'].remove('mgr')
+
+print(D)
+
+
+D = {}
+
+D['state1'] = True # A visited-state dictionary
+
+print('state1' in D)
+
+S = set()
+
+S.add('state1') # Same but with sets
+
+print('state1' in S)
+
+print(D)
+
+
+
+
+
 
 
 
