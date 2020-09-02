@@ -460,11 +460,195 @@ S.add('state1') # Same but with sets
 
 print('state1' in S)
 
+
+print(list(zip(['a', 'b', 'c'], [1,2,3]))) # Zip together keys and values
+
+D = dict(zip(['a', 'b', 'c'], [1, 2, 3])) # Make a dict from a zip result
+
 print(D)
 
 
+D = {k: v for (k, v) in zip(['a', 'b', 'c'], [1, 2, 3])}
+
+print(D)
 
 
+D = { x: x ** 2 for x in [1, 2, 3, 4]} # Or: range(1, 5)
+
+print(D)
+
+
+D = {c: c * 4 for c in 'SPAM'} # Loop over any iterable
+
+print(D)
+
+
+D = {c.lower(): c + '!' for c in ['SPAM', 'EGGS', 'HAM']}
+
+print(D)
+
+
+D = dict.fromkeys(['a', 'b', 'c'], 0) # Initialize dict from keys
+
+print(D)
+
+
+D = {k:0 for k in ['a', 'b', 'c']} # Same, but with a comprehension
+
+print(D)
+
+
+D = dict.fromkeys('spam') # Other iterables, default value
+
+print(D)
+
+
+D = {k: None for k in 'spam'}
+
+print(D)
+
+
+D = dict(a=1, b=2, c=3)
+
+print(D)
+
+
+K = D.keys() # Makes a view object in 3.X, not a list
+
+print(K)
+
+print(list(K)) # Force a real list in 3.X if needed
+
+
+V = D.values() # Ditto for values and items
+
+print(V)
+
+print(list(V))
+
+
+print(D.items())
+
+print(list(D.items()))
+
+
+# K[0] # List operations fail unless converted
+
+print(list(K)[0])
+
+
+for k in D.keys(): print(k) # Iterators used automatically in loops
+
+
+for key in D: print(key) # Still no need to call keys() to iterate
+
+
+D = {'a': 1, 'b': 2, 'c': 3}
+
+print(D)
+
+
+K = D.keys()
+
+V = D.values()
+
+print(list(K)) # Views maintain same order as dictionary
+
+print(list(V))
+
+
+del D['b'] # Change the dictionary in place
+
+print(D)
+
+
+print(list(K)) # Reflected in any current view objects
+
+print(list(V)) # Not true in 2.X! - lists detached from dict
+
+
+print(K, V)
+
+print(K | {'x': 4}) # Keys (and some items) views are set-like
+
+
+# V & {'x': 4} # TypeError
+
+# V & {'x': 4}.values() # TypeError
+
+
+D = {'a': 1, 'b': 2, 'c': 3}
+
+print(D.keys() & D.keys()) # Intersect keys views
+
+print(D.keys() & {'b'}) # Intersect keys and set
+
+print(D.keys() & {'b': 1}) # Intersect keys and dict
+
+print(D.keys() | {'b', 'c', 'd'}) # Union keys and set
+
+
+D = {'a': 1}
+
+print(list(D.items())) # Items set-like if hashable
+
+print(D.items() | D.keys()) # Union view and view
+
+print(D.items() | D) # dict treated same as its keys
+
+
+print(D.items() | {('c', 3), ('d', 4)}) # Set of key/value pairs
+
+print(dict(D.items() | {('c', 3), ('d', 4)})) # dict accepts iterable sets too
+
+
+D = {'a': 1, 'b': 2, 'c': 3}
+
+print(D)
+
+Ks = D.keys()
+
+# print(Ks.sort()) # AttributeError
+
+
+Ks = list(Ks) # Force it to be a list and then sort
+
+Ks.sort()
+
+for k in Ks: print(k, D[k]) # 2.X omit outer parens in prints
+
+
+print(D)
+
+Ks = D.keys() # Or you can use sorted() on the keys
+
+for k in sorted(Ks): print(k, D[k]) # sorted() accepts any iterable
+                                    # sorted() returns its result
+
+
+print(D) # Better yet, sort the dict directly
+
+for k in sorted(D): print(k, D[k]) # dict iterators return keys
+
+
+# sorted(D1.items()) < sorted(D2.items()) # Like 2.X D1 < D2
+
+
+print(D)
+
+# D.has_key('c') # 2.X only: True/False
+
+print('c' in D) # Preferred in 2.X today
+
+print('x' in D)
+
+if 'c' in D: print('present', D['c']) # Branch on result
+
+print(D.get('c')) # Fetch with default
+
+print(D.get('x'))
+
+if D.get('c') != None: print('present', D['c']) # Another option
 
 
 
