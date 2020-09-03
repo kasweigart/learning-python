@@ -121,3 +121,83 @@ print(name, job) # Dict equivalent (but order may vary)
 for x in bob: print(bob[x]) # Step through keys, index values
 
 for x in bob.values(): print(x) # Step through values view
+
+
+# Files
+
+
+myfile = open('myfile.txt', 'w') # Open for text output: create/empty
+
+myfile.write('hello text file\n') # Write a line of text: string
+
+myfile.write('goodbye text file\n')
+
+myfile.close() # Flush out buffers to disk
+
+
+myfile = open('myfile.txt') # Open for text input: 'r' is default
+
+print(myfile.readline()) # Read the lines back
+
+print(myfile.readline())
+
+print(myfile.readline()) # Empty string: end-of-file
+
+
+print(open('myfile.txt').read()) # Read all at once into string
+
+
+for line in open('myfile.txt'): # Use file iterators. not reads
+    print(line, end='')
+
+
+data = open('data.bin', 'rb').read() # Open binary file: rb=read binary
+
+print(data) # byte string holds binary data
+
+print(data[4:8]) # Act like strings
+
+print(data[4:8][0]) # But really are small 8-bit integers
+
+print(bin(data[4:8][0])) # Python 3.X/2.6+ bin() function
+
+
+X, Y, Z = 43, 44, 45 # Native Python objects
+
+S = 'Spam' # Must be strings to store in file
+
+D = {'a': 1, 'b': 2}
+
+L = [1, 2, 3]
+
+
+F = open('datafile.txt', 'w') # Create output text file
+
+F.write(S + '\n') # Terminate lines with \n
+
+F.write('%s,%s,%s\n' % (X, Y, Z)) # Convert numbers to strings
+
+F.write(str(L) + '$' + str(D) + '\n') # Convert and seperate with $
+
+F.close()
+
+
+chars = open('datafile.txt').read() # Raw string display
+
+print(chars) # User-friendly display
+
+
+F = open('datafile.txt') # Open again
+
+line = F.readline() # Read one line
+
+print(line) # Remove end-of-line
+
+
+
+
+
+
+
+
+
