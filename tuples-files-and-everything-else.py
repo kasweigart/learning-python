@@ -194,10 +194,311 @@ line = F.readline() # Read one line
 print(line) # Remove end-of-line
 
 
+line = F.readline() # Next line from file
+
+print(line)
+
+parts = line.split(',') # Split (parse) on commas
+
+print(parts)
 
 
+print(int(parts[1])) # Convert from string to int
+
+numbers = [int(P) for P in parts] # Convert all in list at once
+
+print(numbers)
 
 
+line = F.readline()
+
+print(line)
+
+parts = line.split('$') # Split (parse) on $
+
+print(parts)
+
+print(eval(parts[0]))
+
+objects = [eval(P) for P in parts] # Do same for all in list
+
+print(objects)
+
+
+D = {'a': 1, 'b': 2}
+
+F = open('datafile.pkl', 'wb')
+
+import pickle
+
+pickle.dump(D, F)
+
+F.close() # Pickle any object to file
+
+
+F = open('datafile.pkl', 'rb')
+
+E = pickle.load(F) # Load any object from file
+
+print(E)
+
+
+print(open('datafile.pkl', 'rb').read()) # Format is prone to change!
+
+
+name = dict(first='Bob', last='Smith')
+
+rec = dict(name=name, job=['dev', 'mgr'], age=40.5)
+
+print(rec)
+
+
+import json
+
+print(json.dumps(rec))
+
+S = json.dumps(rec)
+
+print(S)
+
+O = json.loads(S)
+
+print(O)
+
+print(O == rec)
+
+
+json.dump(rec, fp=open('testjson.txt', 'w'), indent=4)
+
+print(open('testjson.txt').read())
+
+P = json.load(open('testjson.txt'))
+
+print(P)
+
+
+F = open('data.bin', 'wb') # Open binary output file
+
+import struct
+
+data = struct.pack('>i4sh', 7, b'spam', 8) # Make packed binary data
+
+print(data)
+
+F.write(data) # Write byte string
+
+F.close()
+
+
+F = open('data.bin', 'rb')
+
+data = F.read() # Get packed binary data
+
+print(data)
+
+values = struct.unpack('>i4sh', data) # Convert to Python objects
+
+print(values)
+
+
+L = ['abc', [(1, 2), ([3], 3)], 5]
+
+print(L[1])
+
+print(L[1][1])
+
+print(L[1][1][0])
+
+print(L[1][1][0][0])
+
+
+X = [1, 2, 3]
+
+L = ['z', X, 'b'] # Embeds reference to X's object
+
+D = {'x':X, 'y':2}
+
+
+X[1] = 'surprise!' # Changes all three references!
+
+print(L)
+
+print(D)
+
+
+L = [1, 2, 3]
+
+D = {'a': 1, 'b': 2}
+
+A = L[:] # Instead of A = L (or list(L))
+
+B = D.copy() # Instead of B = D (ditto for sets)
+
+
+A[1] = 'Ni!'
+
+B['c'] = 'spam'
+
+print(L, D)
+
+print(A, B)
+
+
+X = [1, 2, 3]
+
+L = ['a', X[:], 'b'] # Embed copies of X's object
+
+D = {'x':X[:], 'y':2}
+
+
+import copy
+
+X = copy.deepcopy(Y) # Fully copy an arbitrarily nested object Y
+
+
+L1 = [1, ('a', 3)] # Same value, unique objects
+
+L2 = [1, ('a', 3)]
+
+print(L1 == L2, L1 is L2) # Equivalent? Same object?
+
+
+S1 = 'spam'
+
+S2 = 'spam'
+
+print(S1 == S2, S1 is S2)
+
+
+S1 = 'a longer string'
+
+S2 = 'a longer string'
+
+print(S1 == S2, S1 is S2)
+
+
+L1 = [1, ('a', 3)]
+
+L2 = [1, ('a', 2)]
+
+print(L1 < L2, L1 == L2, L1 > L2) # Less, equal, greater: tuple of results
+
+
+print(11 == '11') # Equality does not convert non-numbers
+
+# print(11 >= '11') # 2.X compares by types name string: int, str
+
+print(11 > 9.123) # Mixed numbers convert to highest type
+
+print(str(11) >= '11', 11 >= int('11')) # Manual conversions force the issue
+
+
+D1 = {'a':1, 'b':2}
+
+D2 = {'a':1, 'b':3}
+
+print(D1 == D2) # Dictionary equality: 2.X + 3.X
+
+# print(D1 < D2) # Dictionary magnitude: 2.X only
+
+
+print(list(D1.items()))
+
+print(sorted(D1.items()))
+
+print(sorted(D1.items()) < sorted(D2.items())) # Magnitude test in 3.X
+
+print(sorted(D1.items()) > sorted(D2.items()))
+
+
+L = [None] * 100
+
+print(L)
+
+
+print(bool(1))
+
+print(bool('spam'))
+
+print(bool({}))
+
+
+L = [1, 2, 3]
+
+M = ['X', L, 'Y'] # Embed a reference to L
+
+print(M)
+
+L[1] = objects # Changes M too
+
+print(M)
+
+
+L = [1, 2, 3]
+
+M = ['X', L[:], 'Y'] # Embed a copy of L (or list(L), or L.copy())
+
+L[1] = 0
+
+print(L)
+
+print(M)
+
+
+L = [4, 5, 6]
+
+X = L * 4 # Like [4, 5, 6] + [4, 5, 6] + ...
+
+Y = [L] * 4 # [L] + [L] + ... = [L, L,...]
+
+print(X)
+
+print(Y)
+
+L[1] = 0 # Impacts Y but not X
+
+print(X)
+
+print(Y)
+
+
+L = [4, 5, 6]
+
+Y = [list(L)] * 4 # Embed a (shared) copy of L
+
+L[1] = 0
+
+print(Y)
+
+
+Y[0][1] = 99 # All four copies are still the same
+
+print(Y)
+
+
+L = [4, 5, 6]
+
+Y = [list(L) for i in range(4)]
+
+print(Y)
+
+Y[0][1] = 99
+
+print(Y)
+
+
+L = ['grail'] # Append reference to same object
+
+L.append(L) # Generates cycle in object: [...]
+
+print(L)
+
+
+T = (1, 2, 3)
+
+# T[2] = 4 # Error!
+
+T = T[:2] + (4,) # OK: (1, 2, 4)
 
 
 
