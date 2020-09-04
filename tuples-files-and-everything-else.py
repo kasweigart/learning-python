@@ -501,4 +501,147 @@ T = (1, 2, 3)
 T = T[:2] + (4,) # OK: (1, 2, 4)
 
 
+print(2 ** 16)
+
+print(2 / 5, 2 / 5.0)
+
+print('spam' + 'eggs')
+
+S = 'ham'
+
+print('eggs ' + S)
+
+print(S * 5)
+
+print(S[:0])
+
+print('green %s and %s' % ('eggs', S))
+
+print('green {0} and {1}'.format('eggs', S))
+
+print(('x',)[0])
+
+print(('x', 'y')[1])
+
+L = [1, 2, 3] + [4, 5, 6]
+
+print(L, L[:], L[:0], L[-2], L[-2:])
+
+print(([1,2,3]+[4,5,6])[2:4])
+
+print([L[2], L[3]])
+
+L.reverse()
+
+print(L)
+
+L.sort()
+
+print(L)
+
+print(L.index(4))
+
+print({'a':1, 'b':2}['b'])
+
+D = {'x': 1, 'y': 3, 'z': 3}
+
+D['w'] = 0
+
+print(D['x'] + D['w'])
+
+D[(1,2,3)] = 4
+
+print(list(D.keys()), list(D.values()), (1,2,3) in D)
+
+print([[]], ['',[],(),{},None])
+
+
+L = [0,1,2,3]
+
+# print(L[4]) # Error: list index out of range
+
+# print([-1000:100]) # Error
+
+# print([3:1]) # Error
+
+
+L = [1,2,3,4]
+
+L[2:3] = []
+
+print(L)
+
+# L[1:2] = 1 # Error: can only assign an iterable
+
+print(L)
+
+
+X = 'spam'
+
+Y = 'eggs'
+
+X, Y = Y, X
+
+print(X, Y)
+
+
+D = {}
+
+D[1] = 'a'
+
+D[2] = 'b'
+
+print(D)
+
+D[(1,2,3)] = 'c'
+
+print(D)
+
+
+D = {'a':1, 'b':2, 'c':3}
+
+# print(D['d']) # Error: key does not exist
+
+D['d'] = 'spam'
+
+print(D)
+
+
+# print('spam' + [1,2,3]) # Can't concatenate string and list
+
+S = 'spam'
+
+print(S + S)
+
+print([1,2,3]+[1,2,3])
+
+
+print(S[0][0][0][0][0])
+
+L = ['s','p','a','m']
+
+print(L[0][0][0][0][0])
+
+
+print(S[0:1] + 'l' + S[2:])
+
+print(S[0] + 'l' + S[2:])
+
+
+file = open('myfile.txt', 'w')
+
+file.write('Hello file world!')
+
+file.close()
+
+
+line = open('myfile.txt')
+
+print(line.read())
+
+
+
+
+
+
 
