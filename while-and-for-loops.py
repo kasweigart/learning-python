@@ -311,6 +311,115 @@ for c in 'spam': res.append(ord(c))
 print(res)
 
 
+D1 = {'spam':1, 'eggs':3, 'toast':5}
+
+print(D1)
+
+D1 = {}
+
+D1['spam'] = 1
+
+D1['eggs'] = 3
+
+D1['toast'] = 5
+
+
+keys = ['spam', 'eggs', 'toast']
+
+vals = [1,3,5]
+
+print(list(zip(keys, vals)))
+
+D2 = {}
+
+for (k,v) in zip(keys,vals): D2[k] = v
+
+print(D2)
+
+
+keys = ['spam', 'eggs', 'toast']
+
+vals = [1,3,5]
+
+D3 = dict(zip(keys, vals))
+
+print(D3)
+
+
+print({k: v for (k, v) in zip(keys, vals)})
+
+
+S = 'spam'
+
+offset = 0
+
+for item in S:
+    print(item, 'appears at offset', offset)
+    offset +=1
+
+
+S = 'spam'
+
+for (offset, item) in enumerate(S):
+    print(item, 'appears at offset', offset)
+
+
+E = enumerate(S)
+
+print(E)
+
+print(next(E))
+
+print(next(E))
+
+print(next(E))
+
+
+print([c * i for (i,c) in enumerate(S)])
+
+
+import os
+
+F = os.popen('dir') # Read line by line
+
+print(F.readline())
+
+F = os.popen('dir') # Read by sized blocks
+
+print(F.read())
+
+print(os.popen('dir').readlines()[0]) # Read all lines: index
+
+print(os.popen('dir').read()[:50]) # Read all at once: slice
+
+for line in os.popen('dir'): # File line iterator loop
+    print(line.rstrip())
+
+
+print(os.system('systeminfo'))
+
+for line in os.popen('systeminfo'): print(line.rstrip())
+
+# Formatted limited display
+
+for (i,line) in enumerate(os.popen('systeminfo')):
+    if i == 4: break
+    print('%05d) %s' % (i, line.rstrip()))
+
+
+# Parse for specific lines, case neutral
+
+for line in os.popen('systeminfo'):
+    parts = line.split(':')
+    if parts and parts[0].lower() == 'system type':
+        print(parts[1].strip())
+
+
+from urllib.request import urlopen
+
+for line in urlopen('http://learning-python.com/books'):
+    print(line)
+
 
 
 
