@@ -159,5 +159,159 @@ for key in tests: # For all keys
         print(key, 'not found!')
 
 
+seq1 = 'spam'
+
+seq2 = 'scam'
+
+res = []
+
+for x in seq1: # Scan first sequence
+    if x in seq2: # Common item?
+        res.append(x) # Add result to end
+
+print(res)
+
+
+print([x for x in seq1 if x in seq2]) # Let Python collect results
+
+
+print(list(range(5)), list(range(2, 5)), list(range(0, 10, 2)))
+
+
+print(list(range(-5, 5)))
+
+print(list(range(5, -5, -1)))
+
+
+for i in range(3):
+    print(i, 'Pythons')
+
+
+X = 'spam'
+
+for item in X: print(item, end=' ') # Simple iteration
+
+
+i = 0
+
+while i < len(X): # while loop iteration
+    print(X[i], end=' ')
+    i += 1
+
+
+print(X)
+
+print(len(X)) # Length of string
+
+print(list(range(len(X)))) # All legal offsets into X
+
+for i in range(len(X)): print(X[i], end=' ') # Manual range/len iteration
+
+
+for item in X: print(item, end=' ') # Use simple iteration if you can
+
+
+S = 'spam'
+
+for i in range(len(S)): # For repeat counts 0..3
+    S = S[1:] + S[:1] # Move front item to end
+    print(S, end=' ')
+
+
+print(S)
+
+for i in range(len(S)): # For positions 0..3
+    X = S[i:] + S[:i] # Rear part + front part
+    print(X, end=' ')
+
+
+L = [1,2,3]
+
+for i in range(len(L)): # Works on any sequence type
+    X = L[i:] + L[:i]
+    print(X, end=' ')
+
+
+S = 'abcdefghijk'
+
+print(list(range(0, len(S), 2)))
+
+for i in range(0, len(S), 2): print(S[i], end=' ')
+
+
+S = 'abcdefghijk'
+
+for c in S[::2]: print(c, end=' ')
+
+
+L = [1,2,3,4,5]
+
+for x in L:
+    x+=1 # Changes x, not L
+
+print(L)
+
+print(x)
+
+
+L = [1,2,3,4,5]
+
+for i in range(len(L)): # Add one to each item in L
+    L[i] += 1 # Or L[i] = L[i] + 1
+
+print(L)
+
+
+i = 0
+
+while i < len(L):
+    L[i] += 1
+    i += 1
+
+print(L)
+
+
+print([x + 1 for x in L])
+
+
+L1 = [1,2,3,4]
+
+L2 = [5,6,7,8]
+
+print(zip(L1, L2))
+
+print(list(zip(L1, L2))) # list() required in 3.X, not 2.X
+
+
+for (x,y) in zip(L1, L2):
+    print(x,y, '--', x+y)
+
+
+T1, T2, T3, = (1,2,3), (4,5,6), (7,8,9)
+
+print(T3)
+
+print(list(zip(T1, T2, T3))) # Three tuples for three arguments
+
+
+S1 = 'abc'
+
+S2 = 'xyz123'
+
+print(list(zip(S1, S2))) # Truncates at len(shortest)
+
+
+print(list(map(ord, 'spam')))
+
+
+res = []
+
+for c in 'spam': res.append(ord(c))
+
+print(res)
+
+
+
+
 
 
