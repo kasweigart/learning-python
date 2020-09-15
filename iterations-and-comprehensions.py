@@ -297,6 +297,319 @@ print(tuple(open('script2.py')))
 print('&&'.join(open('script2.py')))
 
 
+a,b,c,d = open('script2.py') # Sequence assignment
+
+print(a,d)
+
+
+a, *b = open('script2.py') # 3.X extended form
+
+print(a, b)
+
+
+print('y = 2\n' in open('script2.py')) # Memebership test
+
+print('x = 2\n' in open('script2.py'))
+
+
+L = [11, 22, 33, 44] # Slice assignment
+
+L[1:3] = open('script2.py')
+
+print(L)
+
+
+L = [11]
+
+L.extend(open('script2.py')) # list.extend method
+
+print(L)
+
+
+L = [11]
+
+L.append(open('script2.py')) # list.append does not iterate
+
+print(L)
+
+print(list(L[1]))
+
+
+print(set(open('script2.py')))
+
+print({line for line in open('script2.py')})
+
+print({ix: line for ix, line in enumerate(open('script2.py'))})
+
+
+print({line for line in open('script2.py') if line[0] == 'p'})
+
+print({ix: line for (ix, line) in enumerate(open('script2.py')) if line[0] == 'p'})
+
+
+print(list(line.upper() for line in open('script2.py'))) # See Chapter 20
+
+
+print(sum([3,2,4,1,5,0])) # sum expects numbers only
+
+print(any(['spam', '', 'ni']))
+
+print(all(['spam', '', 'ni']))
+
+print(max([3,2,5,1,4]))
+
+print(min([3,2,5,1,4]))
+
+
+print(max(open('script2.py'))) # Line with max/min string value
+
+print(min(open('script2.py')))
+
+
+def f(a,b,c,d): print(a,b,c,d, sep='&')
+
+print(f(1,2,3,4))
+
+print(f(*[1,2,3,4])) # Unpacks into arguments
+
+print(f(*open('script2.py'))) # Iterates by lines too
+
+
+X = (1,2)
+
+Y = (3,4)
+
+print(list(zip(X,Y))) # Zip tuples: returns an iterable
+
+A, B = zip(*zip(X,Y)) # Unzip a zip!
+
+print(A, B)
+
+
+print(zip('abc', 'xyz')) # An iterable in Python 3.X (a list in 2.X)
+
+print(list(zip('abc', 'xyz'))) # Force list of results in 3.X to display
+
+
+Z = zip((1,2), (3,4)) # Unlike 2.X lists, cannot index, etc.
+
+# print(Z[0]) # TypeError: 'zip' object is not subscriptable
+
+
+M = map(lambda x: 2 ** x, range(3))
+
+for i in M: print(i)
+
+for i in M: print(i) # Unlike 2.X lists, one pass only (zip too)
+
+
+R = range(10) # range returns an iterable, not a list
+
+print(R)
+
+I = iter(R) # Make an iterator from the range iterable
+
+print(next(I))
+
+print(next(I))
+
+print(next(I))
+
+print(list(range(10))) # To force a list if required
+
+
+print(len(R)) # range also does len and indexing, but no others
+
+print(R[0])
+
+print(R[-1])
+
+print(next(I)) # Continue taking from iterator, where left off
+
+print(I.__next__()) # .next() becomes __next__(), but use new next()
+
+
+M = map(abs, (-1,0,-1)) # map returns an iterable, not a list
+
+print(M)
+
+print(next(M)) # Use iterator manually: exhausts results
+
+print(next(M)) # These do not support len() or indexing
+
+print(next(M))
+
+# print(next(M)) # StopIteration
+
+for x in M: print(x) # map iterator is now empty: one pass only
+
+M = map(abs, (-1,0,1)) # Make a new iterable/iterator to scan again
+
+for x in M: print(x) # Iteration contexts auto call next()
+
+print(list(map(abs, (-1,0,1)))) # Can force a real list if needed
+
+
+Z = zip((1,2,3), (10,20,30)) # zip is the same: a one-pass iterator
+
+print(Z)
+
+print(list(Z))
+
+for pair in Z: print(pair) # Exhausted after one pass
+
+Z = zip((1,2,3), (10,20,30))
+
+for pair in Z: print(pair) # Iterator used automatically or manually
+
+Z = zip((1,2,3), (10,20,30)) # Manual iteration (iter() not needed)
+
+print(next(Z))
+
+print(next(Z))
+
+
+print(filter(bool, ['spam', '', 'ni']))
+
+print(list(filter(bool, ['spam', '', 'ni'])))
+
+
+print([x for x in ['spam', '', 'ni'] if bool(x)])
+
+print([x for x in ['spam', '', 'ni'] if x])
+
+
+R = range(3) # range allows multiple iterators
+
+# print(next(R)) # TypeError: range object is not an iterator
+
+I1 = iter(R)
+
+print(next(I1))
+
+print(next(I1))
+
+I2 = iter(R) # Two iterators on one range
+
+print(next(I2))
+
+print(next(I1)) # I1 is at a different spot than I2
+
+
+Z = zip((1,2,3), (10,11,12))
+
+I1 = iter(Z)
+
+I2 = iter(Z) # Two iterators on one zip
+
+print(next(I1))
+
+print(next(I1))
+
+print(next(I2)) # (3.X) I2 is at same spot as I1!
+
+
+M = map(abs, (-1,0,1)) # Ditto for map (and filter)
+
+I1 = iter(M); I2 = iter(M)
+
+print(next(I1), next(I1), next(I2))
+
+# print(next(I2)) # StopIteration: (3.X) Single scan is exhausted!
+
+
+R = range(3) # But range allows many iterators
+
+I1, I2 = iter(R), iter(R)
+
+print([next(I1), next(I1), next(I1)])
+
+print(next(I2)) # Multiple active scans, like 2.X lists
+
+
+D = dict(a=1,b=2,c=3)
+
+print(D)
+
+
+K = D.keys()  # A view object in 3.X, not a list
+
+print(K)
+
+
+# print(next(K)) # TypeError: dict_keys object is not an iterator. Views are not iterators themselves
+
+
+I = iter(K) # View iterables have an iterator,
+
+print(next(I)) # which can be used manually
+
+print(next(I)) # but does not support len(), index
+
+
+for k in D.keys(): print(k, end=' ') # All iteration contexts use auto
+
+
+K = D.keys()
+
+print(list(K)) # Can still force a real list if needed
+
+V = D.values() # Ditto for values() and items() views
+
+print(V)
+
+print(list(V)) # Need list() to display or index as list
+
+# print(V[0]) # TypeError: 'dict_values' object does not support indexing
+
+print(list(V)[0])
+
+print(list(D.items()))
+
+for (k, v) in D.items(): print(k, v, end=' ')
+
+
+print(D) # Dicitonaries still produce an iterator
+
+I = iter(D) # Returns next key on each iteration
+
+print(next(I))
+
+print(next(I))
+
+for key in D: print(key, end=' ') # Still no need to call keys() to iterate, but keys is an iterable in #.X too!
+
+
+print(D)
+
+for k in sorted(D.keys()): print(k, D[k], end=' ')
+
+for k in sorted(D): print(k, D[k], end=' ') # 'Best practice' key sorting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
