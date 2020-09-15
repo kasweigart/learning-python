@@ -159,6 +159,154 @@ print(next(I))
 print(I.__next__())
 
 
+R = range(5)
+
+print(R) # Ranges are iterables in 3.X
+
+I = iter(R) # Use iteration protocol to produce results
+
+print(next(I))
+
+print(next(I))
+
+print(list(range(5))) # Or use list to collect all results at once
+
+
+E = enumerate('spam') # enumerate is an iterable too
+
+print(E)
+
+I = iter(E)
+
+print(next(I)) # Generate results with iteration protocol
+
+print(next(I)) # Or use list to force generation to run
+
+print(list(enumerate('spam')))
+
+
+L = [1,2,3,4,5]
+
+for i in range(len(L)):
+    L[i] += 10
+
+print(L)
+
+
+L = [x + 10 for x in L]
+
+print(L)
+
+res = []
+
+for x in L:
+    res.append(x + 10)
+
+print(res)
+
+
+f = open('script2.py')
+
+lines = f.readlines()
+
+print(lines)
+
+
+lines = [line.rstrip() for line in lines]
+
+print(lines)
+
+
+lines = [line.rstrip() for line in open('script2.py')]
+
+print(lines)
+
+
+print([line.upper() for line in open('script2.py')])
+
+print([line.rstrip().upper() for line in open('script2.py')])
+
+print([line.split() for line in open('script2.py')])
+
+print([line.replace(' ', '!') for line in open('script2.py')])
+
+print([('sys' in line, line[:5]) for line in open('script2.py')])
+
+
+lines = [line.rstrip() for line in open('script2.py') if line[0] == 'p']
+
+print(lines)
+
+
+res = []
+
+for line in open('script2.py'):
+    if line[0] == 'p':
+        res.append(line.rstrip())
+
+print(res)
+
+
+print([line.rstrip() for line in open('script2.py') if line.rstrip()[-1].isdigit()])
+
+
+print([x + y for x in 'abc' for y in 'lmn'])
+
+
+res = []
+
+for x in 'abc':
+    for y in 'lmn':
+        res.append(x + y)
+
+print(res)
+
+
+for line in open('script2.py'): # Use file iterators
+    print(line.upper(), end='')
+
+
+uppers = [line.upper() for line in open('script2.py')]
+
+print(uppers)
+
+
+print(map(str.upper, open('script2.py'))) # map is itself an iterable in 3.X
+
+
+print(list(map(str.upper, open('script2.py'))))
+
+
+print(sorted(open('script2.py')))
+
+print(list(zip(open('script2.py'), open('script2.py'))))
+
+print(list(enumerate(open('script2.py'))))
+
+print(list(filter(bool, open('script2.py')))) # nonempty=True
+
+import functools, operator
+
+print(functools.reduce(operator.add, open('script2.py')))
+
+
+print(list(open('script2.py')))
+
+print(tuple(open('script2.py')))
+
+print('&&'.join(open('script2.py')))
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
