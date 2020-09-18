@@ -212,6 +212,178 @@ def f1():
 f1()
 
 
+# def func():
+#     nonlocal name1, name2 # OK here
+
+# nonlocal X # nonlocal declaration not allowed at module level
+
+
+def tester(start):
+    state = start # Referencing nonlocals works normally
+    def nested(label):
+        print(label, state) # Remembers state in enclosing scope
+    return nested
+
+F = tester(0)
+
+F('spam')
+
+F('ham')
+
+
+def tester(start):
+    state = start # Each call gets its own state
+    def nested(label):
+        nonlocal state # Remembers state in enclosing scope
+        print(label, state)
+        state += 1 # Allowed to change it if nonlocal
+    return nested
+
+F = tester(0) 
+
+F('spam') # Increments state on each call
+
+F('ham')
+
+F('eggs')
+
+
+G = tester(42) # Make a new tester that starts at 42
+
+G('spam')
+
+G('eggs') # My state information updated to 43
+
+F('bacon') # But F's is where it left off: at 3
+
+
+# def tester(start):
+#     def nested(label):
+#         nonlocal state # Nonlocals must already exist in enclosing def!
+#         state = 0
+#         print(label, state)
+#     return nested
+
+# SyntaxError: no binding for nonlocal 'state' found
+
+
+def tester(start):
+    def nested(label):
+        global state # Globals don't have to exist yet when declared
+        state = 0 # This creates the name in the module now
+        print(label, state)
+    return nested
+
+F = tester(0)
+
+F('abc')
+
+print(state)
+
+
+# spam = 99
+
+# def tester():
+#     def nested():
+#         nonlocal spam # Must be in a def, not the module!
+#         print('Current=', spam)
+#         spam+=1
+#     return nested
+
+# SyntaxError: no binding for nonlocal 'spam' found
+
+
+def tester(start):
+    state = start # Each call gets its own state
+    def nested(label):
+        nonlocal state # Remembers state in enclosing scope
+        print(label, state)
+        state += 1
+    return nested
+
+F = tester(0)
+
+F('spam') # State visible within closure only
+
+# F.state # AttributeError: 'function' object has no attribute 'state'
+
+
+def tester(start):
+    global state # Move it out to the module to change it
+    state = start # global allows changes in module scope
+    def nested(label):
+        global state
+        print(label, state)
+        state += 1
+    return nested
+
+F = tester(0)
+
+F('spam') # Each call increments shared global state
+
+F('eggs')
+
+
+G = tester(42) # Resets state's single copy in global scope
+
+G('toast')
+
+G('bacon')
+
+G('ham') # But my counter has been overwritten!
+
+
+class tester: # Class-based alternative (see Part VI)
+    def __init__(self, start): # On object construction
+        self.state = start # save state explicitly in new object
+    def nested(self, label):
+        print(label, self.state) # Referenec state explicitly
+        self.state += 1 # Changes are always allowed
+
+F = tester(0) # Create instance, invoke __init__
+
+F.nested('spam') # F is passed to self
+
+F.nested('ham')
+
+
+G = tester(42) # Each instance gets new copy of state
+
+G.nested('toast') # Changing one does not impact others
+
+G.nested('bacon')
+
+F.nested('eggs') # F's state is where it left off
+
+print(F.state) # State may be accessed outside class
+
+
+class tester:
+    def __init__(self, start):
+        self.state = start
+    def __call__(self, label): # Intercept direct instance calls
+        print(label, self.state) # So .nested() not required
+        self.state += 1
+
+H = tester(99)
+
+H('juice') # Invokes __call__
+
+H('pancakes')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
