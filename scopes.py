@@ -372,6 +372,45 @@ H('juice') # Invokes __call__
 H('pancakes')
 
 
+def tester(start):
+    def nested(label):
+        print(label, nested.state) # nested is in enclosing scope
+        nested.state += 1 # Change attr, not nested itself
+    nested.state = start # Initial state after func defined
+    return nested
+
+F = tester(0)
+
+F('spam') # F is a 'nested' with state attached
+
+F('ham')
+
+print(F.state)
+
+
+G = tester(42) # G has own state, doesn't overwrite F's
+
+G('eggs')
+
+F('ham')
+
+print(F.state) # State is accessible and per-call
+
+print(G.state)
+
+print(F is G) # Different function objects
+
+
+def tester(start):
+    def nested(label):
+        print(label, state[0]) # Leverage in-place mutable change
+        state[0] += 1 # Extra syntax, deep magic?
+    state = [start]
+    return nested
+
+
+
+
 
 
 
