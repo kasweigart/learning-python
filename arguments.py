@@ -105,6 +105,143 @@ def f(a, *pargs, **kargs): print(a, pargs, kargs)
 f(1, 2, 3, x=1, y=2)
 
 
+def func(a,b,c,d): print(a,b,c,d)
+
+args = (1,2)
+
+args += (3,4) # Same as func(1,2,3,4)
+
+func(*args)
+
+
+args = {'a': 1, 'b': 2, 'c': 3}
+
+args['d'] = 4
+
+func(**args) # Same as func(a=1, b=2, c=3, d=4)
+
+
+func(*(1,2), **{'d': 4, 'c': 3}) # Same as func(1,2,d=4,c=3)
+
+func(1, *(2,3), **{'d': 4}) # Same as func(1,2,3,d=4)
+
+func(1, c=3, *(2,), **{'d': 4}) # Same as func(1,2,c=3,d=4)
+
+func(1, *(2,3), d=4) # Same as func(1,2,3,d=4)
+
+func(1, *(2,), c=3, **{'d': 4}) # Same as func(1,2,c=3,d=4)
+
+
+def kwonly(a, *b, c):
+    print(a,b,c)
+
+kwonly(1,2,c=3)
+
+kwonly(a=1, c=3)
+
+# kwonly(1,2,3) # TypeError: kwonly() missing 1 required keyword-only argument: 'c'
+
+
+def kwonly(a,*,b,c):
+    print(a,b,c)
+
+kwonly(1,c=3,b=2)
+
+kwonly(c=3,b=2,a=1)
+
+# kwonly(1,2,3) # TypeError: kwonly() takes 1 positional argument but 3 were given
+
+# kwonly(1) # kwonly() missing 2 required keyword-only arguments: 'b' and 'c'
+
+
+def kwonly(a, *, b='spam', c='ham'):
+    print(a,b,c)
+
+kwonly(1)
+
+kwonly(1, c=3)
+
+kwonly(a=1)
+
+kwonly(c=3, b=2, a=1)
+
+# kwonly(1,2) # TypeError: kwonly() takes 1 positional argument but 2 were given
+
+
+def kwonly(a, *, b, c='spam'):
+    print(a,b,c)
+
+kwonly(1, b='eggs')
+
+# kwonly(1, c='eggs') # TypeError: kwonly() missing 1 required keyword-only argument: 'b'
+
+# kwonly(1,2) # TypeError: kwonly() takes 1 positional argument but 2 were given
+
+
+def kwonly(a, *, b=1, c, d=2):
+    print(a,b,c,d)
+
+kwonly(3, c=4)
+
+kwonly(3, c=4, b=5)
+
+# kwonly(3) # TypeError: kwonly() missing 1 required keyword-only argument: 'c'
+
+# kwonly(1,2,3) # TypeError: kwonly() takes 1 positional argument but 3 were given
+
+
+def kwonly(a, *, b=1, c, d=2):
+    print(a,b,c,d)
+
+kwonly(3, c=4)
+
+kwonly(3, c=4, b=5)
+
+# kwonly(3) # TypeError: kwonly() missing 1 required keyword-only argument: 'c'
+
+# kwonly(1,2,3) # TypeError: kwonly() takes 1 positional argument but 3 were given
+
+
+# def kwonly(a, **pargs, b, c): # SyntaxError: invalid syntax
+
+# def kwonly(a, **, b, c): # SyntaxError: invalid syntax
+
+
+# def(a, *b, **d, c=6): print(a,b,c,d) # Keyword-only before **!
+
+def f(a, *b, c=6, **d): print(a,b,c,d) # Collect args in header
+
+f(1, 2, 3, x=4, y=5) # Default used
+
+f(1, 2, 3, x=4, y=5, c=7) # Override default
+
+f(1, 2, 3, c=7, x=4, y=5) # Anywhere in keywords
+
+
+def f(a, c=6, *b, **d): print(a,b,c,d) # c is not keyword-only here!
+
+f(1, 2, 3, x=4)
+
+
+def f(a, *b, c=6, **d): print(a,b,c,d) # KW-only between * and **
+
+f(1, *(2,3), **dict(x=4,y=5)) # Unpack args at call
+
+# f(1, *(2,3), **dict(x=4,y=5), c=7) # SyntaxError: invalid syntax - Keywords before **args!
+
+f(1, *(2,3), c=7, **dict(x=4, y=5)) # Override default
+
+f(1, c=7, *(2,3), **dict(x=4, y=5)) # After or before *
+
+f(1, *(2,3), **dict(x=4, y=5, c=7)) # Keyword-only in **
+
+
+
+
+
+
+
+
 
 
 
