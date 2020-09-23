@@ -236,6 +236,84 @@ f(1, c=7, *(2,3), **dict(x=4, y=5)) # After or before *
 f(1, *(2,3), **dict(x=4, y=5, c=7)) # Keyword-only in **
 
 
+def min1(*args):
+    res = args[0]
+    for arg in args[1:]:
+        if arg < res:
+            res = arg
+    return res
+
+
+def min2(first, *rest):
+    for arg in rest:
+        if arg < first:
+            first = arg
+    return first
+
+
+def min3(*args):
+    tmp = list(args) # Or, in Python 2,4+: return sorted(args)[0]
+    tmp.sort()
+    return tmp[0]
+
+
+print(min1(3,4,1,2))
+print(min2('bb','aa'))
+print(min3([2,2],[1,1],[3,3]))
+
+
+def minmax(test, *args):
+    res = args[0]
+    for arg in args[1:]:
+        if test(arg, res):
+            res = arg
+    return res
+
+
+def lessthan(x, y): return x < y # See also: lambda, eval
+def grtrthan(x, y): return x > y
+
+print(minmax(lessthan, 4,2,1,5,6,3)) # Self-test code
+print(minmax(grtrthan, 4,2,1,5,6,3))
+
+
+from inter2 import intersect, union
+
+s1, s2, s3 = 'SPAM', 'SCAM', 'SLAM'
+
+print(intersect(s1, s2), union(s1, s2)) # Two operands
+
+print(intersect([1,2,3],(1,4))) # Mixed types
+
+print(intersect(s1,s2,s3)) # Three operands
+
+print(union(s1,s2,s3))
+
+
+def tester(func, items, trace=True):
+    for i in range(len(items)):
+        items = items[1:] + items[:1]
+        if trace: print(items)
+        print(sorted(func(*items)))
+
+tester(intersect, ('a', 'abcdefg', 'abdst', 'albmcnd'))
+
+tester(union, ('a', 'abcdefg', 'adbst', 'albmcnd'), False)
+
+tester(intersect, ('ba', 'abcdefg', 'abdst', 'albmcnd'), False)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
