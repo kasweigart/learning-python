@@ -303,6 +303,13 @@ tester(union, ('a', 'abcdefg', 'adbst', 'albmcnd'), False)
 tester(intersect, ('ba', 'abcdefg', 'abdst', 'albmcnd'), False)
 
 
+intersect([1,2,1,3], (1,1,4))
+
+union([1,2,1,3], (1,1,4))
+
+tester(intersect, ('ababa', 'abcdefg', 'aaab',), False)
+
+
 
 
 
