@@ -1,3 +1,4 @@
+#!python
 """
 Emulate most of the 3.X print function for use in 2.X (and 3.X).
 Call signature: print3(*args, sep=' ', end='\n', file=sys.stdout)
